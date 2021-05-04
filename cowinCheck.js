@@ -6,15 +6,15 @@ const districts = [
   { districtId: 506, districtName: "Jaipur II" },
 ];
 
-try {
-  const age = parseInt(getArgValue("-age") || 18);
-  const interval = parseInt(getArgValue("--interval") || 60);
+const age = parseInt(getArgValue("-age") || 18);
+const interval = parseInt(getArgValue("-interval") || 60);
 
+try {
   console.log(
     `Script starting for age: ${age} years, running at delay of time ${interval} Seconds`
   );
 
-  coWinVaccineCheck(age, interval);
+  coWinVaccineCheck();
 } catch (err) {
   console.error(err);
   notifyError();
@@ -89,7 +89,7 @@ function notifyError() {
   });
 }
 
-function coWinVaccineCheck(age, interval) {
+function coWinVaccineCheck() {
   console.log(
     `coWinVaccineCheck Function running at Time ${Date(Date.now()).toString()}`
   );
