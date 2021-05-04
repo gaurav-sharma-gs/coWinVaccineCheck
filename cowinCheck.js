@@ -45,7 +45,7 @@ function dateToday() {
   return today;
 }
 
-function runForDistrict(districtId, districtName, age) {
+function runForDistrict(districtId, districtName) {
   const url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id=${districtId}&date=${dateToday()}`;
 
   // console.log(`Caling URL ${url}`);
@@ -70,12 +70,12 @@ function runForDistrict(districtId, districtName, age) {
     }
 
     if (slotsAvailable > 0) {
-      notifyAvailable(age, slotsAvailable, districtName, Array.from(dates));
+      notifyAvailable(slotsAvailable, districtName, Array.from(dates));
     }
   });
 }
 
-function notifyAvailable(age, slotsAvailable, districtName, dates) {
+function notifyAvailable(slotsAvailable, districtName, dates) {
   notifier.notify({
     title: `Slots Available for Age ${age}+ : ${slotsAvailable}`,
     message: `${districtName} Dates Available are ${dates}`,
@@ -95,7 +95,7 @@ function coWinVaccineCheck() {
   );
 
   districts.forEach((district) => {
-    runForDistrict(district.districtId, district.districtName, age);
+    runForDistrict(district.districtId, district.districtName);
   });
 
   console.log(`Waiting for ${interval} seconds. `);
